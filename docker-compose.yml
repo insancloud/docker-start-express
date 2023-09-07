@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  app:
+    container_name: 'app' ## ini nama container nya
+    build: . ## build atau jalankan file Dockerfile nya, Titik artinya default : Dockerfile
+    volumes: ## ini untuk penyimpanannya agar bisa di akses
+      - .:/app ## ini penyimpanan untuk aplikasi
+      - node_modules:/app/node_modules ## ini untuk mount ke dir node_modules semua yang ada di /app/node_modules
+    ports:
+      - 7314:7314 # expose Port PORTCONTAINER:PORTAPP
+    stdin_open: true
+    environment:
+      - PORT=7314 # Buat Envirotment untuk Aplikasi
+    command: npm start
+
+volumes:
+  node_modules:
